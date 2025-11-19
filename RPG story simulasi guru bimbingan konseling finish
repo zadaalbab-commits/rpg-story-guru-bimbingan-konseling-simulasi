@@ -1,0 +1,286 @@
+import time
+import sys
+
+# Variabel global dideklarasikan di luar agar bisa dibaca semua fungsi
+nama_guru = ""
+nama_murid = ""
+jenis_murid = "" # Variabel global untuk menyimpan jenis murid
+
+def ketik_lambat(teks):
+    """Menampilkan teks dengan efek mengetik yang lambat."""
+    for karakter in teks:
+        print(karakter, end='', flush=True)
+        # Sedikit variasi kecepatan untuk tanda baca agar lebih natural
+        if karakter in ['.', '?', '!']:
+            time.sleep(0.04)
+        else:
+            time.sleep(0.01) 
+    print()
+
+def garis_batas():
+    print("\n" + "="*70 + "\n")
+
+def ending_scene(title, result, detail):
+    """Fungsi standar untuk menampilkan akhir cerita dan keluar."""
+    garis_batas()
+    ketik_lambat(f"*** SELESAI: {title} ***")
+    ketik_lambat("="*70)
+    ketik_lambat(f"\n[HASIL]: {result}")
+    ketik_lambat(f"\n[DETAIL AKHIR]: {detail}")
+    ketik_lambat("\nTerima kasih telah bermain. Coba lagi untuk mencari solusi lain!")
+    garis_batas()
+    input("\nTekan ENTER untuk keluar...")
+    sys.exit() # Mengakhiri program setelah ending dicapai
+
+def get_valid_choice(min_val, max_val):
+    """Meminta input pilihan dari pengguna dan memvalidasinya."""
+    while True:
+        try:
+            pilihan = input("\n>> Masukkan pilihan (angka): ").strip()
+            choice = int(pilihan)
+            if min_val <= choice <= max_val:
+                return choice
+            else:
+                ketik_lambat(f"Pilihan tidak valid. Masukkan angka antara {min_val} dan {max_val}.")
+        except ValueError:
+            ketik_lambat("Input tidak valid. Harap masukkan angka.")
+
+# --- ALUR PLOT UNTUK MASING-MASING KARAKTERISTIK SISWA ---
+
+def alur_murid_cerdas():
+    """Kasus: Cerdas tapi sinis, menantang otoritas."""
+    ketik_lambat("\n[KASUS KHUSUS: MURID CERDAS]")
+    ketik_lambat(f"{nama_murid} dikenal sinis dan sering mengoreksi guru di depan kelas, membuatnya anti-sosial. Kasus terbaru: menolak ujian karena mengklaim materi salah.")
+    ketik_lambat("ERCHA: 'Siswa ini memiliki kebutuhan intelektual yang tidak terstimulasi. Konflik adalah cara mencari validasi. Pendekatan harus mengalihkan energi destruktif ini.'")
+
+    print("\n[3 SOLUSI DIGITAL DARI ERCHA.AI]")
+    print("1. Program Mentor Sebaya: Salurkan egonya menjadi pembimbing bagi siswa sebaya yang kesulitan belajar, memberinya otoritas positif.")
+    print("2. Terapi Logika Kognitif: Hadapi klaim kesalahannya dengan data ilmiah dari pakar luar, dan memaksa dia menerima otoritas fakta.")
+    print("3. Membangunkan jiwa sosialnya : Anda menghubungkannya dengan komunitas non-akademik (misalnya klub olahraga atau seni) untuk mengembangkan empati dan sosialisasi.")
+    
+    pilihan = get_valid_choice(1, 3)
+
+    if pilihan == 1:
+        ending_scene(f"Sukses, Ego {nama_murid} tersalurkan, reputasinya berubah drastis.",
+                     "Anda memberinya peran mentor. Ia akhirnya menemukan kepuasan dari membantu orang lain, bukan menjatuhkannya. Ia lulus sebagai siswa yang cerdas dan berempati tinggi.",
+                     "") # PERBAIKAN: Menambahkan argumen ketiga agar konsisten
+    elif pilihan == 2:
+        ending_scene("Gagal (Perlawanan Terbuka)", f"{nama_murid} merasa dipermalukan dan keluar dari sekolah.",
+                     "Konfrontasi data hanya memicu rasa malu dan dendam. Ia memposting semua bukti perdebatan online, mencoreng nama sekolah, dan mencari lingkungan yang 'lebih menghargai kebenaran'.")
+    elif pilihan == 3:
+      ketik_lambat("Ia berhasil masuk di suatu klub ekstrakulikuler")
+      ketik_lambat("namun Ia sulit berinteraksi")
+      ketik_lambat("Apa yang harus Anda lakukan?")
+
+      print("\n[2 Solusi dari ERCHA.AI]")
+      print(f"1. Anda memperkenalkan {nama_murid} dan membantunya dalam mencari teman di ekstrakulikuler")
+      print(f"2. Anda meminta tolong kepada siswa yang ikut ekstrakulikuler tersebut untuk menemani {nama_murid}")
+      
+      pilihan_lanjutan = get_valid_choice(1,2) # Mengganti nama variabel agar tidak bentrok
+
+      if pilihan_lanjutan == 1:
+        # PERBAIKAN: Menambahkan koma yang hilang antara argumen 1 dan 2
+        ending_scene("Sukses (NIlai terjamin)", 
+                     f"{nama_murid} sudah berhasil mendapatkan perhatian dari teman di ekstrakulikulernya berkat Anda.",
+                     "Ia menemukan kegembiraan di luar akademik. Ia tidak lagi sinis, tapi Anda juga mengawasi produktifitas belajarnya agar ia tidak kehilangan fokus belajar dan potensi intelektualnya semakin maksimal.")
+      elif pilihan_lanjutan == 2:
+          # PERBAIKAN: Menambahkan koma yang hilang antara argumen 1 dan 2
+          ending_scene(f"GAGAL (Nilai {nama_murid} tidak terjamin)",
+                       f"{nama_murid} berhasil diajak interaksi oleh teman ekstrakulikulernya dan menjadi teman akrab,",
+                       f"namun fokus belajar {nama_murid} menjadi berkurang karena sering bermain. ")
+
+def alur_murid_nakal():
+    """Kasus: Suka berkelahi, melanggar aturan berat."""
+    ketik_lambat("\n[KASUS KHUSUS: MURID NAKAL]")
+    ketik_lambat(f"{nama_murid} terlibat perkelahian dengan siswa sekolah lain di luar gerbang. Ini adalah pelanggaran disiplin berat yang sudah ketiga kalinya.")
+    ketik_lambat("ERCHA: 'Perilaku ini didorong oleh kebutuhan mendalam untuk mencari perhatian, pengakuan kekuatan, atau trauma masa lalu. Hukuman murni tidak akan berhasil.'")
+
+    print("\n[4 SOLUSI DIGITAL BERBASIS TEKNIK KONSELING]")
+    print(f"1. Teknik Behavior (Kontrak Perilaku): Membuat kesepakatan tertulis. Jika {nama_murid} tidak terlibat masalah (misal: berkelahi) selama 30 hari, ia akan mendapatkan 'reward'. Jika gagal, ada konsekuensi yang disepakati.")
+    print(f"2. Teknik WDEP (Reality Therapy): Sesi konseling untuk mengevaluasi pilihan. Anda membimbingnya: (W) Apa *keinginan* utamamu? (D) Apa yang kamu *lakukan* (berkelahi)? (E) Apakah berkelahi *membantu* mendapat keinginanmu? (P) Apa *rencana* baru yang lebih efektif?")
+    print(f"3. Teknik REBT (Konfrontasi Keyakinan): Sesi konseling untuk menantang keyakinan irasionalnya. Anda mengidentifikasi bahwa ia percaya 'Saya harus membalas siapa saja yang meremehkan saya agar dihormati'. Anda mencoba mendebat keyakinan ini secara logis.")
+    print(f"4. Teknik PCT (Person-Centered): Sesi konseling yang berfokus pada empati. Anda tidak memberi solusi atau hukuman, melainkan hanya mendengarkan (active listening) dan memberikan 'penghargaan positif tanpa syarat' untuk membangun rasa percaya.")
+    
+    pilihan = get_valid_choice(1, 4) # Diperbarui menjadi 4 pilihan
+
+    if pilihan == 1:
+        ketik_lambat(f"Kontrak Perilaku Dibuat: {nama_murid} setuju dengan kontrak perilaku.")
+        ketik_lambat(f"Isi kontrak: Jika {nama_murid} terlibat perkelahian lagi, dia akan dikeluarkan dari sekolah. Jika dia berhasil 30 hari tanpa masalah, dia mendapat 'reward' (misal: rekomendasi untuk ekstrakurikuler yang diinginkannya).")
+        ketik_lambat("Apa yang akan Anda lakukan selanjutnya untuk mendukung kontrak ini?")
+                     
+        print("\n[3 SOLUSI TINDAK LANJUT DARI ERCHA.AI]")
+        print(f"1. Anda (sebagai {nama_guru}) secara proaktif mendaftarkan {nama_murid} ke ekstrakurikuler (misal: olahraga bela diri) untuk menyalurkan energinya secara positif SEKARANG.")
+        print(f"2. Anda membiarkan {nama_murid} berjuang sendiri dan hanya akan mengevaluasi di akhir 30 hari.")
+        print(f"3. Anda memberi semangat dan dukungan penuh secara verbal, mengingatkannya setiap hari tentang kontrak.")
+        
+        pilihan_lanjutan = get_valid_choice(1, 3)
+                     
+        if pilihan_lanjutan == 1:
+            ending_scene("SUKSES (Energi Tersalurkan)", f"{nama_murid} menemukan cara baru menyalurkan agresi dan mendapat pengakuan.", 
+                         f"{nama_murid} fokus pada bela diri, mendapatkan teman baru, dan belajar disiplin. Dia berhasil mematuhi kontrak dan perilakunya membaik drastis.")
+        elif pilihan_lanjutan == 2:
+            ending_scene("GAGAL (Merasa Ditinggalkan)", f"{nama_murid} melanggar kontrak di hari ke-15 dan dikeluarkan.",
+                         f"Dibiarkan sendiri, {nama_murid} merasa tidak didukung dan kembali ke kebiasaan lama. Kontrak itu gagal karena tidak ada intervensi proaktif.")
+        elif pilihan_lanjutan == 3:
+            ending_scene("MENGGANTUNG (Iritasi)", f"{nama_murid} merasa 'diceramahi' dan kesal.", 
+                         f"Dukungan verbal Anda tanpa tindakan nyata dirasa {nama_murid} sebagai omelan. Dia mungkin mematuhi kontrak karena takut, tapi tidak ada perubahan mendasar pada dirinya. Masalah bisa muncul lagi nanti.")
+    elif pilihan == 2:
+        ending_scene("Sukses (Transformasi Positif)", f"{nama_murid} menemukan jalur hidup baru atas pilihannya sendiri.",
+                     "Dalam sesi WDEP, ia sadar ia 'ingin diakui punya keahlian'. Berkelahi adalah cara yang salah. Rencana barunya adalah fokus pada keahlian mekanik. Anda memfasilitasi magang. Ia lulus menjadi ahli otomotif.")
+    elif pilihan == 3:
+        ending_scene("Gagal (Resistensi dan Dropout)", f"{nama_murid} merasa dihakimi, menolak konseling, dan dikeluarkan.",
+                     "Debat keyakinan berjalan buruk. {nama_murid} merasa Anda 'tidak mengerti' dan 'menyalahkannya'. Ia menjadi lebih defensif, menolak semua bantuan, melakukan pelanggaran lebih besar, dan akhirnya di-dropout.")
+    elif pilihan == 4:
+        ending_scene("MENGGANTUNG (MASALAH BELUM SELESAI)", f"{nama_murid} mulai terbuka, tapi masalah perilaku belum selesai.",
+                     "Anda berhasil membangun kepercayaan. {nama_murid} mulai bercerita tentang masalah di rumah. Ini adalah fondasi yang baik, tapi perkelahiannya belum berhenti. Perlu tindak lanjut dengan teknik lain.")
+
+
+def alur_murid_malas():
+    """Kasus: Pintar tapi malas akut, terancam tidak naik kelas."""
+    ketik_lambat("\n[KASUS KHUSUS: MURID MALAS]")
+    ketik_lambat(f"{nama_murid} cerdas, namun 80% tugasnya belum dikumpulkan. Ia sering tidur di kelas dan terancam tidak naik. Masalahnya bukan ketidakmampuan, tapi ketidakmauan.")
+    ketik_lambat("ERCHA: 'Kemalasan adalah gejala dari kecemasan performa, kebosanan, atau kurangnya tujuan. Perlu penemuan *motivasi intrinsik*.'")
+
+    print("\n[3 SOLUSI DIGITAL DARI ERCHA.AI]")
+    print(f"1. Konseling Penemuan Tujuan: Menggali impian jangka panjang {nama_murid} dan membuatkan peta jalan yang menghubungkannya dengan tugas saat ini.")
+    print("2. Sistem 'Gamifikasi' Belajar: Menerapkan aplikasi manajemen tugas yang memberikan poin dan *reward* untuk setiap tugas yang selesai (motivasi ekstrinsik).")
+    print("3. Penurunan Beban Akademik: Bernegosiasi dengan guru untuk menghapus sebagian tugas lama, agar ia fokus pada sisa tugas dan ujian.")
+    
+    pilihan = get_valid_choice(1, 3)
+
+    if pilihan == 1:
+        ending_scene("Sukses (Motivasi Diri)", f"{nama_murid} menemukan tujuan hidupnya dan menyelesaikan semua tugas.",
+                     "Anda menghubungkannya dengan seorang arsitek ternama. Ia menyadari tugas sekolah adalah langkah kecil menuju impian besarnya. Ia lulus dengan semangat dan nilai memuaskan.")
+    elif pilihan == 2:
+        ending_scene("Netral (Lulus Tipis)", f"{nama_murid} naik kelas, tapi hanya karena insentif dari sistem, bukan perubahan pola pikir.",
+                     "Ia terobsesi mengejar poin. Ia lulus, namun begitu sistem *reward* dilepas, ia kembali ke kebiasaan menunda. Perlu dukungan berkelanjutan.")
+    elif pilihan == 3:
+        ending_scene("Gagal (Ketergantungan dan Kegagalan Ujian)", "Kebiasaan menunda tidak berubah, dan ia gagal di ujian yang tidak bisa dinegosiasikan.",
+                     "Penurunan beban membuatnya berpikir jalan pintas itu mudah. Ia gagal mempersiapkan diri untuk ujian akhir yang bobotnya besar, dan akhirnya tidak naik kelas.")
+
+def alur_murid_umum():
+    """Kasus: Perubahan perilaku mendadak (bolak-balik bolos, tertutup)."""
+    ketik_lambat("\n[KASUS KHUSUS: MURID UMUM]")
+    ketik_lambat(f"{nama_murid} adalah siswa biasa, tiba-tiba menjadi sangat tertutup, nilai anjlok, dan sering bolos tanpa alasan yang jelas. Orang tua tidak tahu penyebabnya.")
+    ketik_lambat("ERCHA: 'Perubahan mendadak mengindikasikan tekanan emosional akut yang tersembunyi, kemungkinan dari isu sosial atau lingkungan keluarga. Perlu deteksi akar masalah.'")
+
+    print("\n[3 SOLUSI DIGITAL DARI ERCHA.AI]")
+    print("1. Deteksi Pola Sosial Digital: Gunakan data kehadiran, pertemanan, dan aktivitas media sosial (jika ada) untuk mendeteksi pola *bullying* atau isolasi tersembunyi.")
+    print(f"2. Kunjungan Rumah (Home Visit): Melakukan kunjungan rumah yang terencana (setelah memberitahu orang tua) untuk melihat dinamika keluarga dan lingkungan rumah.")
+    print(f"3. Intervensi Kelompok Pendukung: Kumpulkan teman-teman terdekatnya (yang Anda identifikasi positif) dan minta mereka untuk mendukung {nama_murid} secara perlahan.")
+    
+    pilihan = get_valid_choice(1, 3)
+
+    if pilihan == 1:
+        ketik_lambat(f"Sukses (Akar Masalah Terdeteksi): Data ERCHA mengidentifikasi pola cyberbullying ringan yang dipicu oleh teman-temannya di grup online.")
+        ketik_lambat("Anda memverifikasi ini dalam sesi konseling privat, dan {nama_murid} akhirnya mengakuinya.")
+        ketik_lambat("Apa yang akan Anda lakukan selanjutnya?")
+                     
+        print("\n[3 SOLUSI TINDAK LANJUT DARI ERCHA.AI]")
+        print(f"1. Mediasi Terbuka: Memanggil {nama_murid} dan para pembully ke dalam satu ruangan untuk mediasi dan konfrontasi.")
+        print(f"2. Edukasi dan Sanksi: Menangani pembully secara terpisah (edukasi, sanksi ringan), dan memberi {nama_murid} pelatihan ketahanan digital (cara memblokir, mengabaikan, melaporkan).")
+        print(f"3. Pindah Grup: Menyarankan {nama_murid} untuk keluar dari grup online tersebut dan mencari lingkungan pertemanan baru.")
+        
+        pilihan_lanjutan = get_valid_choice(1, 3)
+                     
+        if pilihan_lanjutan == 1:
+            ending_scene("GAGAL (Trauma Tambahan)", f"{nama_murid} merasa semakin terpojok dan malu saat dikonfrontasi langsung.", 
+                         f"Mediasi gagal total. {nama_murid} merasa tidak dibela dan malah 'diadili'. Pembully tidak jera dan bullying berlanjut lebih parah secara diam-diam.")
+        elif pilihan_lanjutan == 2:
+            ending_scene("SUKSES (Mandiri dan Terlindungi)", f"{nama_murid} pulih dan menjadi lebih kuat.",
+                         f"Dengan pembully ditangani dan {nama_murid} dibekali cara membela diri, masalah selesai. {nama_murid} kembali fokus belajar dan nilainya membaik.")
+        elif pilihan_lanjutan == 3:
+            ending_scene("MENGGANTUNG (Masalah Selesai, Tapi...)", f"{nama_murid} aman dari bullying, tapi merasa terisolasi.", 
+                         f"Menghindar menyelesaikan masalah bullying, tapi {nama_murid} kehilangan teman-temannya. Dia aman, tapi kesepian. Perlu waktu lama baginya untuk kembali bersosialisasi.")
+
+    elif pilihan == 2:
+        ending_scene("SUKSES (Konteks Keluarga Terungkap)", f"{nama_murid} dan keluarganya akhirnya terbuka.",
+                     "Kunjungan rumah yang sopan mengungkap bahwa orang tua {nama_murid} sedang dalam proses cerai yang alot, dan {nama_murid} merasa tertekan. Anda bisa memberikan konseling yang tepat sasaran.")
+    elif pilihan == 3:
+        ending_scene(f"GAGAL (Tekanan Teman)", f"{nama_murid} merasa dikhianati oleh teman-temannya.",
+                     f"Intervensi ini menjadi bumerang. {nama_murid} merasa teman-temannya 'disuruh' oleh Anda dan tidak tulus. Dia semakin menutup diri, bahkan dari teman-temannya.")
+
+# --- FUNGSI UTAMA DAN ALUR KONTROL ---
+
+def start_case(jenis_murid):
+    """Router untuk mengarahkan ke alur plot yang benar."""
+    if jenis_murid == "Cerdas": alur_murid_cerdas()
+    elif jenis_murid == "Nakal": alur_murid_nakal()
+    elif jenis_murid == "Malas": alur_murid_malas()
+    elif jenis_murid == "Umum": alur_murid_umum()
+    else: ketik_lambat("Kesalahan sistem routing. Program berhenti.")
+    
+def pilih_role_siswa():
+    """Meminta pengguna memilih jenis peran siswa sebelum memulai prolog dan mengarahkan ke alur yang sesuai."""
+    global jenis_murid, nama_murid
+    garis_batas()
+    ketik_lambat("ERCHA: 'Sebelum analisis strategi, harap definisikan jenis masalah utama siswa ini.'")
+    
+    print("\n[PILIH JENIS MASALAH UTAMA SISWA]")
+    print("1. Murid Cerdas (Sinis, menantang otoritas, anti-sosial)")
+    print("2. Murid Nakal (Suka berkelahi, melanggar aturan berat)")
+    print("3. Murid Malas (Tidak termotivasi, menunda tugas, terancam tidak naik)")
+    print("4. Murid Umum (Perubahan perilaku mendadak, tertutup)")
+    
+    pilihan = get_valid_choice(1, 4)
+            
+    if pilihan == 1:
+        jenis_murid = "Cerdas"
+        karakteristik = "cerdas namun sinis, sering menantang otoritas guru."
+    elif pilihan == 2:
+        jenis_murid = "Nakal"
+        karakteristik = "suka berkelahi dan memberontak, sering melanggar aturan berat."
+    elif pilihan == 3:
+        jenis_murid = "Malas"
+        karakteristik = "tidak termotivasi, menunda tugas, dan terancam tidak naik kelas."
+    elif pilihan == 4:
+        jenis_murid = "Umum"
+        karakteristik = "perubahan perilaku mendadak, menjadi tertutup dan bolos."
+            
+    garis_batas()
+    ketik_lambat(f"PROLOG:")
+    ketik_lambat(f"Anda adalah {nama_guru}, Guru BK di suatu Sekolah Menengah Atas.")
+    ketik_lambat("Sebagai guru BK Anda diwajibkan untuk menertibkan siswa yang bermasalah. ")
+    ketik_lambat(f"Misi Anda kali ini adalah: Menangani {nama_murid}, siswa dengan masalah: {karakteristik}")
+    ketik_lambat("Namun ada masalah baru yaitu pergantian kurikulum.")
+    ketik_lambat("Guru diminta agar menggunakan AI dalam kegiatan pembelajaran.")
+    time.sleep(1)
+    
+    ketik_lambat("\nAnda mencoba bereksperimen dengan sebuah metode baru. AI eksperimental: ERCHA (Emotional & Relational Counseling Hub Assistant).")
+    time.sleep(1)
+    
+    ketik_lambat("\nSYSTEM: MENGAKSES DATABASE ERCHA.AI...")
+    time.sleep(1)
+    ketik_lambat(f"ERCHA: 'Selamat datang, {nama_guru}. Analisis mendalam {nama_murid} selesai. Saya menyarankan strategi unik berbasis jenis masalah ini.'")
+    
+    # Lanjutkan ke alur plot yang spesifik
+    start_case(jenis_murid)
+
+
+def mulai_permainan():
+    """Fungsi utama untuk memulai permainan."""
+    global nama_guru, nama_murid
+    
+    garis_batas()
+    ketik_lambat("SOLUSI DIGITAL GURU BK: PROJECT ERCHA.AI ")
+    ketik_lambat("Game Roleplay Simulator untuk Konselor Pendidikan")
+    garis_batas()
+    time.sleep(1)
+    
+    # Memastikan input tidak kosong
+    while not nama_guru:
+        nama_guru = input("Masukkan nama guru bimbingan konselingmu (Guru): ").strip()
+        if not nama_guru:
+            ketik_lambat("Nama guru tidak boleh kosong.")
+            
+    while not nama_murid:
+        nama_murid = input("Masukkan nama siswa bermasalah (Siswa): ").strip()
+        if not nama_murid:
+            ketik_lambat("Nama siswa tidak boleh kosong.")
+    
+    pilih_role_siswa()
+
+
+if __name__ == "__main__":
+    mulai_permainan()
+    # Kode setelah ini tidak akan berjalan karena sys.exit() dipanggil di ending_scene()
